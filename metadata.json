@@ -1,0 +1,6 @@
+{
+  "name": "Virginia Sylva",
+  "description": "Interactive WebGL sprite-stacking botanical sanctuary featuring native Virginia trees across seasons, daylight, and weather.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
