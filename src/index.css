@@ -1,0 +1,494 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Fraunces", Georgia, serif;
+  --font-sans: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, monospace;
+}
+
+:root {
+  --sylva-accent: #f3c978;
+  --sylva-accent-ink: #1b1710;
+  --sylva-accent-ring: rgba(243, 201, 120, 0.58);
+  --sylva-accent-glow: rgba(243, 201, 120, 0.32);
+}
+
+@layer base {
+  html,
+  body,
+  #root {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    font-family: var(--font-sans);
+    background-color: #101311;
+    color: #f4f2eb;
+  }
+}
+
+/* ── Sunlit Luminous Glass Orbs (ONAROOM + 3D Sphere Moodboard) ────────────── */
+.sylva-orb {
+  position: relative;
+  border-radius: 9999px;
+  border: 1px solid rgba(255, 255, 255, 0.34);
+  background:
+    radial-gradient(circle at 30% 24%, rgba(255, 255, 255, 0.72) 0%, rgba(255, 255, 255, 0.14) 36%, transparent 64%),
+    radial-gradient(circle at 68% 76%, var(--orb-deep, rgba(22, 34, 28, 0.85)) 0%, var(--orb-core, rgba(72, 134, 96, 0.82)) 100%);
+  box-shadow:
+    inset 0 2px 5px rgba(255, 255, 255, 0.56),
+    inset 0 -5px 10px rgba(0, 0, 0, 0.34),
+    0 10px 24px rgba(0, 0, 0, 0.28),
+    0 2px 6px rgba(0, 0, 0, 0.18);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition:
+    transform 260ms cubic-bezier(0.22, 1.35, 0.36, 1),
+    box-shadow 220ms ease,
+    border-color 220ms ease,
+    filter 220ms ease;
+}
+
+.sylva-orb::after {
+  content: "";
+  position: absolute;
+  top: 14%;
+  left: 20%;
+  width: 34%;
+  height: 22%;
+  border-radius: 9999px;
+  background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.72), transparent 72%);
+  transform: rotate(-22deg);
+  pointer-events: none;
+}
+
+.sylva-orb:hover:not(:disabled) {
+  transform: translateY(-2px) scale(1.08);
+  border-color: rgba(255, 255, 255, 0.62);
+  box-shadow:
+    inset 0 2px 6px rgba(255, 255, 255, 0.7),
+    inset 0 -5px 10px rgba(0, 0, 0, 0.32),
+    0 14px 28px rgba(0, 0, 0, 0.34),
+    0 0 22px var(--orb-glow, rgba(255, 240, 200, 0.36));
+}
+
+.sylva-orb:active:not(:disabled) {
+  transform: scale(0.95);
+}
+
+.sylva-orb:focus-visible {
+  outline: 2px solid #ffffff;
+  outline-offset: 3px;
+}
+
+.sylva-orb-active {
+  border-color: rgba(255, 255, 255, 0.88);
+  box-shadow:
+    inset 0 2px 6px rgba(255, 255, 255, 0.76),
+    inset 0 -4px 10px rgba(0, 0, 0, 0.28),
+    0 0 0 3px var(--orb-glow, rgba(255, 240, 200, 0.48)),
+    0 12px 26px rgba(0, 0, 0, 0.34);
+}
+
+/* ── Hand-Painted Gouache Plant Swatches ───────────────────────────────────── */
+.sylva-gouache {
+  position: relative;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  background: transparent;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  transition: transform 240ms cubic-bezier(0.22, 1.35, 0.36, 1), filter 200ms ease;
+}
+
+.sylva-gouache:hover:not(:disabled) {
+  transform: translateY(-3px) scale(1.07);
+}
+
+.sylva-gouache:active:not(:disabled) {
+  transform: translateY(0px) scale(0.96);
+}
+
+.sylva-gouache:focus-visible {
+  outline: 2px solid var(--sylva-accent);
+  outline-offset: 4px;
+  border-radius: 14px;
+}
+
+/* ── Unboxed Floating Hairline Orb Sliders (ONAROOM #volp aesthetic) ──────── */
+input[type="range"].sylva-orb-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 2px;
+  border-radius: 999px;
+  outline: none;
+  cursor: pointer;
+  background: rgba(255, 255, 255, 0.34);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.35);
+}
+
+input[type="range"].sylva-orb-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 999px;
+  background:
+    radial-gradient(circle at 32% 28%, #ffffff 0%, #f8f2e4 52%, var(--sylva-accent) 100%);
+  border: 1.5px solid rgba(255, 255, 255, 0.92);
+  box-shadow:
+    inset 0 1px 2px rgba(255, 255, 255, 0.9),
+    0 3px 10px rgba(0, 0, 0, 0.42),
+    0 0 12px var(--sylva-accent-glow);
+  transition: transform 180ms cubic-bezier(0.22, 1.35, 0.36, 1);
+}
+
+input[type="range"].sylva-orb-slider::-webkit-slider-thumb:hover {
+  transform: scale(1.22);
+}
+
+input[type="range"].sylva-orb-slider:focus-visible::-webkit-slider-thumb {
+  outline: 2px solid #ffffff;
+  outline-offset: 3px;
+}
+
+input[type="range"].sylva-orb-slider::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  border-radius: 999px;
+  background:
+    radial-gradient(circle at 32% 28%, #ffffff 0%, #f8f2e4 52%, var(--sylva-accent) 100%);
+  border: 1.5px solid rgba(255, 255, 255, 0.92);
+  box-shadow:
+    inset 0 1px 2px rgba(255, 255, 255, 0.9),
+    0 3px 10px rgba(0, 0, 0, 0.42),
+    0 0 12px var(--sylva-accent-glow);
+  transition: transform 180ms cubic-bezier(0.22, 1.35, 0.36, 1);
+}
+
+/* ── Adaptive Sky Typography (Unboxed, High Contrast over Any Sky) ────────── */
+.sylva-sky-text {
+  color: #fcfaf4;
+  text-shadow:
+    0 1px 3px rgba(8, 12, 10, 0.72),
+    0 2px 12px rgba(8, 12, 10, 0.48);
+}
+
+.sylva-paper-text {
+  color: #1c241e;
+  text-shadow:
+    0 1px 2px rgba(255, 255, 255, 0.85),
+    0 0 10px rgba(255, 255, 255, 0.65);
+}
+
+/* ── Compact Translucent Architectural BIM Sheet (On-Demand Only) ─────────── */
+.sylva-bim-sheet {
+  background: linear-gradient(165deg, rgba(20, 26, 23, 0.78) 0%, rgba(12, 16, 14, 0.88) 100%);
+  border: 1px solid rgba(255, 250, 238, 0.18);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 252, 244, 0.22),
+    0 24px 64px rgba(0, 0, 0, 0.48);
+  backdrop-filter: blur(22px) saturate(1.15);
+  -webkit-backdrop-filter: blur(22px) saturate(1.15);
+}
+
+/* ── Subtle Orbital Breath & Scrollbar ────────────────────────────────────── */
+@keyframes sylva-orb-float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-3px);
+  }
+}
+
+.sylva-float-gentle {
+  animation: sylva-orb-float 4.6s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sylva-float-gentle {
+    animation: none;
+  }
+  .sylva-orb,
+  .sylva-gouache,
+  input[type="range"].sylva-orb-slider::-webkit-slider-thumb {
+    transition: none;
+  }
+}
+
+.sylva-scroll::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+.sylva-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+.sylva-scroll::-webkit-scrollbar-thumb {
+  background: rgba(255, 250, 238, 0.22);
+  border-radius: 999px;
+}
+.sylva-scroll::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 250, 238, 0.36);
+}
+
+.sylva-no-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.sylva-no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* ── Experiential Pixel Typography Mode (ONAROOM Pixelify Sans) ───────────── */
+.sylva-pixel-ui,
+.sylva-pixel-ui button,
+.sylva-pixel-ui input,
+.sylva-pixel-ui textarea {
+  font-family: "Pixelify Sans", "Plus Jakarta Sans", sans-serif;
+  letter-spacing: 0.015em;
+}
+
+.sylva-pixel-ui .font-display {
+  font-family: "Pixelify Sans", "Fraunces", serif;
+  letter-spacing: 0.01em;
+}
+
+/* ── ONAROOM PiP Interactive Sky UI Cards (0px Sharp Architectural Edition) ── */
+.sylva-pip-tile {
+  position: fixed;
+  perspective: 800px;
+  cursor: grab;
+  user-select: none;
+  touch-action: none;
+  transition:
+    width 520ms cubic-bezier(0.22, 1, 0.36, 1),
+    height 520ms cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 220ms ease;
+}
+
+.sylva-pip-tile.dragging,
+.sylva-pip-tile.resizing {
+  transition: none;
+}
+
+.sylva-pip-tile.dragging {
+  cursor: grabbing;
+}
+
+.sylva-pip-card {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 6px;
+  overflow: hidden;
+  transform-style: preserve-3d;
+  will-change: transform;
+  box-shadow:
+    0 20px 44px rgba(8, 12, 20, 0.30),
+    0 2px 6px rgba(8, 12, 20, 0.18);
+}
+
+@keyframes sylva-card-deal {
+  0% {
+    opacity: 0;
+    transform: translate3d(-18px, -10px, 0) scale(0.92) rotate(-3.5deg);
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1) rotate(0deg);
+  }
+}
+
+.sylva-card-dealt {
+  animation: sylva-card-deal 200ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+input[type="range"].sylva-card-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 3px;
+  border-radius: 2px;
+  outline: none;
+  cursor: pointer;
+  background: var(--card-slider-track, rgba(20, 25, 35, 0.24));
+}
+
+input[type="range"].sylva-card-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 11px;
+  height: 11px;
+  border-radius: 2px;
+  background: var(--card-slider-thumb, #141923);
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.32);
+  transition: transform 140ms ease;
+}
+
+input[type="range"].sylva-card-slider::-webkit-slider-thumb:hover {
+  transform: scale(1.18);
+}
+
+input[type="range"].sylva-card-slider::-moz-range-thumb {
+  width: 11px;
+  height: 11px;
+  border-radius: 2px;
+  background: var(--card-slider-thumb, #141923);
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.32);
+}
+
+.sylva-pip-tile.minimized {
+  width: 44px !important;
+  height: 44px !important;
+  cursor: pointer;
+}
+
+.sylva-pip-tile.minimized .sylva-pip-card {
+  border-radius: 8px;
+  box-shadow: 0 10px 24px rgba(10, 14, 22, 0.34);
+}
+
+.sylva-pip-sheen {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 3;
+  transition: opacity 260ms ease;
+}
+
+.sylva-pip-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 12;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+  padding: 5px 6px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 180ms ease;
+}
+
+.sylva-pip-tile:hover .sylva-pip-bar,
+.sylva-pip-tile.controls-open .sylva-pip-bar,
+.sylva-pip-tile:focus-within .sylva-pip-bar {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.sylva-pip-asp {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  padding: 2px;
+  background: rgba(8, 10, 14, 0.84);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+}
+
+.sylva-pip-asp-knob {
+  position: absolute;
+  top: 2px;
+  bottom: 2px;
+  left: 0;
+  background: #f5f2ea;
+  pointer-events: none;
+  transition:
+    transform 340ms cubic-bezier(0.22, 1.35, 0.36, 1),
+    width 340ms cubic-bezier(0.22, 1.35, 0.36, 1);
+}
+
+.sylva-pip-asp button {
+  position: relative;
+  z-index: 1;
+  border: 0;
+  background: transparent;
+  padding: 2px 5px;
+  font-size: 9px;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: rgba(255, 255, 255, 0.72);
+  cursor: pointer;
+  line-height: 1;
+}
+
+.sylva-pip-asp button[data-active="true"] {
+  color: #0b0d10;
+}
+
+.sylva-pip-grip {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 18px;
+  height: 18px;
+  z-index: 12;
+  cursor: nwse-resize;
+  opacity: 0.45;
+  transition: opacity 160ms ease;
+}
+
+.sylva-pip-tile:hover .sylva-pip-grip {
+  opacity: 0.95;
+}
+
+/* ── Stark Black 0px Architectural Perspective Gallery (Ref: image_5fbde20d) ─ */
+.sylva-void-stage {
+  perspective: 920px;
+  perspective-origin: 50% 48%;
+  background: #050608;
+}
+
+.sylva-arch-plane {
+  position: relative;
+  border-radius: 0px;
+  overflow: hidden;
+  background: #0b0d10;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  transition:
+    transform 260ms cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 180ms ease,
+    box-shadow 220ms ease;
+}
+
+.sylva-arch-plane-interactive:hover {
+  border-color: rgba(255, 255, 255, 0.85);
+  box-shadow: 0 28px 70px rgba(0, 0, 0, 0.82);
+}
+
+.sylva-arch-plane-interactive:focus-visible {
+  outline: 2px solid #ffffff;
+  outline-offset: 3px;
+}
+
+/* Subtle Y2K hairline titlebar stripe */
+.sylva-y2k-stripes {
+  background-image: repeating-linear-gradient(
+    to bottom,
+    currentColor 0px,
+    currentColor 1px,
+    transparent 1px,
+    transparent 3px
+  );
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sylva-pip-tile,
+  .sylva-pip-asp-knob,
+  .sylva-arch-plane {
+    transition: none;
+  }
+}
+
+
